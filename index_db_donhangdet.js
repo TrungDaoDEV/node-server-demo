@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());//thay cho bodyparser
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-var port = normalizePort(process.env.PORT || '3000');
+var port = process.env.PORT || 3000;
 app.set('port', port);
 
 io.on("connection", function (socket) {

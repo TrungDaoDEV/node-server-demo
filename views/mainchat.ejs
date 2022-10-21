@@ -1,0 +1,42 @@
+<html>
+<header>
+    <title>
+        Demo Socket IO
+    </title>
+    <script src="jquery.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="xuly.js"></script>
+    <link rel="stylesheet" type="text/css" href="layout.css" />
+</header>
+
+<body>
+    <div id="wrapper">
+        <div id="loginForm">
+            <h3>WHAT'S YOUR NAME</h3>
+            <input type="text" id="txtUsername" />
+            <input type="button" value="Register" id="btnRegister" />
+        </div>
+        <div id="chatForm">
+            <div id="left">
+                <div id="boxTitle">Users Online</div>
+                <div id="boxContent">
+                    <!-- <div class="useronline">Tèo nguyền</div>
+                    <div class="useronline">Tèo nguyền</div>
+                    <div class="useronline">Tèo nguyền</div>
+                    <div class="useronline">Tèo nguyền</div> -->
+                </div>
+            </div>
+            <div id="right">
+                <div id="sayHi">Hello <span id="currentUser"> Tèo</span>
+                    <input type="button" value="Logout" id="btnLogout" />
+                </div>
+                <div id="listMessage"></div>
+                <input type="text" id="txtMessage" />
+                <div id="thongbao"></div>
+                <input type="button" id="btnSendMessage" value="Send">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

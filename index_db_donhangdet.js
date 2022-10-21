@@ -15,12 +15,12 @@ var port = process.env.PORT || 3000;
 app.set('port', port);
 
 io.on("connection", function (socket) {
-    console.log(socket.id + " đăng nhập tại địa chỉ: " + ip.address() + ":3000");
+    // console.log(socket.id + " đăng nhập tại địa chỉ: " + ip.address() + ":3000");
     socket.on("disconnect", function () {
         console.log(socket.id + " ngắt kết nối");
     })
     socket.on("TTM", function (data) {
-        console.log("May : " + data.may + " SL: " + data.sl + " chay: " + data.chay);
+        // console.log("May : " + data.may + " SL: " + data.sl + " chay: " + data.chay);
         io.sockets.emit("Server-send-TTM", data);
         var datasql = { May: data.may, ChayVo: data.sl, Trangthai: data.chay };
         // var sql = 'INSERT INTO maydet SET ?';
@@ -28,7 +28,7 @@ io.on("connection", function (socket) {
         // console.log('data: '+data);
         db.query(sql, datasql, (err, result) => {
             if (err) throw err;
-            console.log("đã udpate 1 dữ liêu " + datasql);
+            // console.log("đã udpate 1 dữ liêu " + datasql);
             // res.send({
             //     status: 'du lieu da goi thanh cong',
             //     May: data.may,

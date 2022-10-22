@@ -7,7 +7,10 @@ app.set("views", "./views");
 
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-server.listen(3000);
+var PORT = process.env.PORT || 3000;
+app.set('port', PORT);
+
+server.listen(PORT);
 
 io.on("connection", function (socket) {
     console.log(socket.id + " đăng nhập tại địa chỉ: " + ip.address() + ":3000");

@@ -3,7 +3,6 @@ var mysql = require('mysql');
 // var bodyParser = require('body-parser');
 var ip = require('ip');
 var cors = require('cors');
-const { normalize } = require('path');
 
 var app = express();
 // app.use(bodyParser.json());
@@ -11,8 +10,8 @@ app.use(cors());
 app.use(express.json());//thay cho bodyparser
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-var port = process.env.PORT || 3000;
-app.set('port', port);
+var PORT = process.env.PORT || 3000;
+app.set('port', PORT);
 
 io.on("connection", function (socket) {
     // console.log(socket.id + " đăng nhập tại địa chỉ: " + ip.address() + ":3000");
@@ -143,7 +142,7 @@ app.post('/update', (req, res) => {
     })
 })
 
-server.listen(port, () => {
+server.listen(PORT, () => {
     console.log("Server đang chạy tại PORT 3000")
 })
 // app.listen(3000, ('192.168.1.39'), () => {

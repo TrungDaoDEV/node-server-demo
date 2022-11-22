@@ -14,6 +14,8 @@ var PORT = process.env.PORT || 3000;
 const datenow = new Date();
 app.set('port', PORT);
 
+server.listen(PORT);
+
 io.on("connection", function (socket) {
     var today = new Date();
     time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -654,9 +656,3 @@ app.post('/update', (req, res) => {
     })
 })
 
-server.listen(PORT, () => {
-    console.log("Server đang chạy tại PORT 3000")
-})
-// app.listen(3000, ('192.168.1.39'), () => {
-//     console.log("Server đang chạy tại PORT 3000")
-// })

@@ -14,7 +14,6 @@ var PORT = process.env.PORT || 3000;
 const datenow = new Date();
 app.set('port', PORT);
 
-server.listen(PORT);
 
 io.on("connection", function (socket) {
     var today = new Date();
@@ -104,7 +103,7 @@ io.on("connection", function (socket) {
 })
 
 var db = mysql.createConnection({
-    host: 'http://192.168.0.3:3000/',
+    host: 'localhost',
     user: 'root',
     password: '',
     // port: 8080,
@@ -656,3 +655,9 @@ app.post('/update', (req, res) => {
     })
 })
 
+server.listen(PORT, () => {
+    console.log("Server đang chạy tại PORT 3000")
+})
+// app.listen(3000, ('192.168.1.39'), () => {
+//     console.log("Server đang chạy tại PORT 3000")
+// })

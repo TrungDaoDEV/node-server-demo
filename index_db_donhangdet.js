@@ -115,8 +115,8 @@ db.connect(function (err) {
     if (err) throw err;
     console.log("Connected! ");
 });
-app.get('/', (req, res) => {
-    res.send("say hi");
+app.get("/", function (req, res) {
+    res.render("doimaunen")
 })
 //xu ly get (select)
 app.get('/datamay', (req, res) => {

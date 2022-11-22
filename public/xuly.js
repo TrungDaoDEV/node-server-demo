@@ -1,4 +1,5 @@
-var socket = io("http://localhost:3000");
+// var socket = io("http://localhost:3000");
+var socket = io("https://node-js-demo-trung.herokuapp.com/");
 socket.on("Server-send-loginFail", function (data) {
     alert("đăng nhập thất bại : " + data);
 });

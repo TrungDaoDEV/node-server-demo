@@ -12,7 +12,15 @@ app.set("views", "./views");
 app.use(cors());
 app.use(express.json());//thay cho bodyparser
 var server = require("http").Server(app);
-var io = require("socket.io")(server);
+var io = require("socket.io")(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+        transports: ["socketIO", "polling"],
+        credentials: true,
+    },
+    allowEIO3: true,
+});
 var PORT = process.env.PORT || 3000;
 const datenow = new Date();
 app.set('port', PORT);

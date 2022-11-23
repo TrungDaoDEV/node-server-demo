@@ -5,6 +5,9 @@ var ip = require('ip');
 var cors = require('cors');
 
 var app = express();
+app.use(express.static("./public"));
+app.set("view engine", "ejs");
+app.set("views", "./views");
 // app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());//thay cho bodyparser

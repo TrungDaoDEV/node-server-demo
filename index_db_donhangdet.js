@@ -14,6 +14,9 @@ var PORT = process.env.PORT || 3000;
 const datenow = new Date();
 app.set('port', PORT);
 
+server.listen(PORT, () => {
+    console.log("Server đang chạy tại PORT 3000")
+})
 
 io.on("connection", function (socket) {
     var today = new Date();
@@ -103,11 +106,11 @@ io.on("connection", function (socket) {
 })
 
 var db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    host: 'us-cdbr-east-06.cleardb.net',
+    user: 'b1a67cdd6b2463',
+    password: '2ff783a8',
     // port: 8080,
-    database: 'donhangdet',
+    database: 'heroku_567fe36f1fa15f6',
 });
 // db.connect();
 db.connect(function (err) {
@@ -655,9 +658,6 @@ app.post('/update', (req, res) => {
     })
 })
 
-server.listen(PORT, () => {
-    console.log("Server đang chạy tại PORT 3000")
-})
 // app.listen(3000, ('192.168.1.39'), () => {
 //     console.log("Server đang chạy tại PORT 3000")
 // })

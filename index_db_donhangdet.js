@@ -115,9 +115,9 @@ io.on("connection", function (socket) {
 //     // port: 8080,
 //     database: 'heroku_567fe36f1fa15f6',
 // });
-var connection;
+var db;
 function handleDisconnect() {
-    connection = mysql.createConnection({
+    db = mysql.createConnection({
         host: 'us-cdbr-east-06.cleardb.net',
         user: 'b1a67cdd6b2463',
         password: '2ff783a8',
@@ -126,7 +126,7 @@ function handleDisconnect() {
     }); // Recreate the connection, since
     // the old one cannot be reused.
 
-    connection.connect(function (err) {              // The server is either down
+    db.connect(function (err) {              // The server is either down
         if (err) {                                     // or restarting (takes a while sometimes).
             console.log('error when connecting to db:', err);
             setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
@@ -134,7 +134,7 @@ function handleDisconnect() {
         console.log("********************** data my SQL Connected! *****************");
     });                                     // process asynchronous requests in the meantime.
     // If you're also serving http, display a 503 error.
-    connection.on('error', function (err) {
+    db.on('error', function (err) {
         console.log('db error', err);
         if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
             handleDisconnect();                         // lost due to either server restart, or a

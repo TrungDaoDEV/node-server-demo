@@ -131,6 +131,7 @@ function handleDisconnect() {
             console.log('error when connecting to db:', err);
             setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
         }                                     // to avoid a hot loop, and to allow our node script to
+        console.log("********************** data my SQL Connected! *****************");
     });                                     // process asynchronous requests in the meantime.
     // If you're also serving http, display a 503 error.
     connection.on('error', function (err) {
@@ -145,10 +146,10 @@ function handleDisconnect() {
 
 handleDisconnect();
 // db.connect();
-db.connect(function (err) {
-    if (err) throw err;
-    console.log("********************** data my SQL Connected! *****************");
-});
+// db.connect(function (err) {
+//     if (err) throw err;
+//     console.log("********************** data my SQL Connected! *****************");
+// });
 app.get("/", function (req, res) {
     res.render("doimaunen")
 })

@@ -90,7 +90,7 @@ io.on("connection", function (socket) {
             // })
         })
         var sql2 = 'INSERT INTO ttmjson SET ?';
-        var datasql2 = { idRJ: null, May: data.may, Ngay: date, SL: data.sl, Trangthai: data.chay, idMD: 2, TG_OFF: data.tg_dung, TG_ON: data.tg_chay };
+        var datasql2 = { idRJ: null, May: data.may, Ngay: date, SL: data.sl, Trangthai: data.chay, idMD: 4, TG_OFF: data.tg_dung, TG_ON: data.tg_chay };
         db.query(sql2, datasql2, (err, result) => {
             if (err) throw err;
         })

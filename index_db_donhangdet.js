@@ -555,6 +555,38 @@ app.post('/deletedh', (req, res) => {
         })
     })
 })
+app.get('/load_md', (req, res) => {
+    var sql = 'SELECT * FROM `maydet`';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        console.log("get    /maydet");
+        // console.log(result);
+        res.send(result);//goi kq cho react native
+    })
+})
+app.post('/insert_md', (req, res) => {
+    console.log(req.body);
+    // tham so truyen
+    var data = { idMD: null, May: req.body.May, ChayVo: req.body.ChayVo, TrangThai: req.body.TrangThai, Nguon: req.body.Nguon, TG_OFF: req.body.TG_OFF };
+    var sql = 'INSERT INTO maydet SET ?';
+
+    db.query(sql, data, (err, result) => {
+        if (err) throw err;
+        console.log("insert máy dệt table")
+        res.send({
+            status: 'du lieu da goi thanh cong',
+            idMD: null,
+            May: req.body.May,
+            ChayVo: req.body.ChayVo,
+            TrangThai: req.body.TrangThai,
+            Nguon: req.body.Nguon,
+            TG_OFF: req.body.TG_OFF
+        })
+    })
+})
 app.get('/khachhang', (req, res) => {
     var sql = 'SELECT * FROM `khachhang`';
     db.query(sql, (err, result) => {

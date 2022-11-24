@@ -587,6 +587,26 @@ app.post('/insert_md', (req, res) => {
         })
     })
 })
+app.post('/update_md', (req, res) => {
+    console.log(req.body);
+    // tham so truyen
+    var data = { idMD: req.body.idMD, May: req.body.May, ChayVo: req.body.ChayVo, TrangThai: req.body.TrangThai, Nguon: req.body.Nguon, TG_OFF: req.body.TG_OFF };
+    var sql = `UPDATE maydet SET ? WHERE idMD=${req.body.idMD}`;
+
+    db.query(sql, data, (err, result) => {
+        if (err) throw err;
+        console.log("update máy dệt ")
+        res.send({
+            status: 'du lieu da goi thanh cong',
+            idMD: req.body.idMD,
+            May: req.body.May,
+            ChayVo: req.body.ChayVo,
+            TrangThai: req.body.TrangThai,
+            Nguon: req.body.Nguon,
+            TG_OFF: req.body.TG_OFF
+        })
+    })
+})
 app.get('/khachhang', (req, res) => {
     var sql = 'SELECT * FROM `khachhang`';
     db.query(sql, (err, result) => {

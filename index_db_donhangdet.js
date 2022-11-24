@@ -589,7 +589,7 @@ app.post('/insertkh', (req, res) => {
 app.post('/updatekh', (req, res) => {
     console.log(req.body);
     // tham so truyen
-    var data = { idKH: req.body.idKH, KyHieu: req.body.KyHieu, TenKH: req.body.TenKH, DiaChi: req.body.DiaChi, SoDT: req.body.SoDT, GhiChu: req.body.GhiChu };
+    var data = { idKH: req.body.idKH, TenKH: req.body.TenKH, DiaChi: req.body.DiaChi, SoDT: req.body.SoDT, GhiChu: req.body.GhiChu };
     var sql = `UPDATE khachhang SET ? WHERE idKH=${req.body.idKH}`;
 
     db.query(sql, data, (err, result) => {
@@ -598,7 +598,6 @@ app.post('/updatekh', (req, res) => {
         res.send({
             status: 'du lieu da sua thanh cong',
             idKH: null,
-            KyHieu: req.body.KyHieu,
             TenKH: req.body.TenKH,
             DiaChi: req.body.DiaChi,
             SoDT: req.body.SoDT,

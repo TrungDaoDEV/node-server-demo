@@ -74,9 +74,9 @@ io.on("connection", function (socket) {
         console.log("May : " + data.may + " SL: " + data.sl + " chay: " + data.chay + " date: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " - " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + " TM" + timeInMss + " TIME: " + data.may_dung);
         socket.broadcast.emit("Server-send-TTM", data);
         if (data.may_dung) {
-            var datasql = { May: data.may, ChayVo: data.sl, Trangthai: data.chay, TG_OFF: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() };
+            var datasql = { May: data.may, Trangthai: data.chay, TG_OFF: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() };
         } else {
-            var datasql = { May: data.may, ChayVo: data.sl, Trangthai: data.chay };
+            var datasql = { May: data.may, Trangthai: data.chay };
         }
         var sql = `UPDATE maydet SET ? WHERE May='${data.may}` + "'";
         db.query(sql, datasql, (err, result) => {

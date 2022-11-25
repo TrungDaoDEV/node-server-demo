@@ -551,7 +551,7 @@ app.post('/insertdh', (req, res) => {
 app.post('/updatedh', (req, res) => {
     console.log(req.body);
     // tham so truyen
-    var data = { NgayDat: req.body.NgayDat, TinhTrang: req.body.TinhTrang, idKH: req.body.idKH };
+    var data = { DATE_FORMAT(NgayDat, "%d-%m-%Y"): req.body.NgayDat, TinhTrang: req.body.TinhTrang, idKH: req.body.idKH };
     var sql = `UPDATE donhang SET ? WHERE idDH=${req.body.idDH}`;
 
     db.query(sql, data, (err, result) => {

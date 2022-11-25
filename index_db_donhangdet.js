@@ -307,15 +307,15 @@ app.get('/loadmaychay', (req, res) => {
 	// trừ 1 ngày
 	yesterday.setDate(today.getDate() - 1);
 	
-	var Ca = returnTime (time);
+	var Ca = returnTime ("6:00");
 	time = "";
 	if (Ca == "07:00") {
 		time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ", Ca,":00");
 	} else if (Ca == "20:00") {
-		if(today.getHours() < "24:00") {
-			time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ", Ca,":00");
-		} else 
+		if(today.getHours() <= "6") {
 			time = time.concat(yesterday.getFullYear(),"-",yesterday.getMonth(),"-",yesterday.getDate()," ", Ca,":00");
+		} else 
+			time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ", Ca,":00");	
 	} else {
 		time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ","07:00:00");
 	}

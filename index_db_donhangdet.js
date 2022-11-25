@@ -308,14 +308,15 @@ app.get('/loadmaychay', (req, res) => {
 	yesterday.setDate(today.getDate() - 1);
 	
 	var Ca = returnTime (time);
+	time = "";
 	if (Ca == "07:00") {
-		time = "";
 		time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ", Ca,":00");
 	} else if (Ca == "20:00") {
-		time = "";
-		time = time.concat(yesterday.getFullYear(),"-",yesterday.getMonth(),"-",yesterday.getDate()," ", Ca,":00");
+		if(today.getHours() < "24:00") {
+			time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ", Ca,":00");
+		} else 
+			time = time.concat(yesterday.getFullYear(),"-",yesterday.getMonth(),"-",yesterday.getDate()," ", Ca,":00");
 	} else {
-		time = "";
 		time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ","07:00:00");
 	}
 	console.log("TIME SQL : " + time);

@@ -310,16 +310,18 @@ app.get('/loadmaychay', (req, res) => {
 	var Ca = returnTime ("6:00");
 	time = "";
 	if (Ca == "07:00") {
-		time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ", Ca,":00");
+		time = time.concat(today.getFullYear(),"-",today.getMonth()+1,"-",today.getDate()," ", Ca,":00");
 	} else if (Ca == "20:00") {
 		if(today.getHours() <= "6") {
-			time = time.concat(yesterday.getFullYear(),"-",yesterday.getMonth(),"-",yesterday.getDate()," ", Ca,":00");
+			time = time.concat(yesterday.getFullYear(),"-",yesterday.getMonth()+1,"-",yesterday.getDate()," ", Ca,":00");
 		} else 
-			time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ", Ca,":00");	
+			time = time.concat(today.getFullYear(),"-",today.getMonth()+1,"-",today.getDate()," ", Ca,":00");	
 	} else {
-		time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ","07:00:00");
+		time = time.concat(today.getFullYear(),"-",today.getMonth()+1,"-",today.getDate()," ","07:00:00");
 	}
 	console.log("TIME SQL : " + time);
+	console.log("today: " + today);
+	console.log("yesterday: " + yesterday);
 
     var sql = `SELECT *,maydet.Trangthai,maydet.May as May,maydet.TG_OFF as time_off, round(sum(ttmjson.TG_OFF/60),2) as stop, round(sum(ttmjson.TG_ON/60),2) as run `
         //+ ' FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay BETWEEN ("2022-11-24 9:00:00") AND (NOW())) '

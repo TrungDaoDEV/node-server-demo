@@ -519,7 +519,7 @@ app.get('/loaddonhang', (req, res) => {
 })
 app.get('/donhang', (req, res) => {
     var data = { idKH: req.headers.idkh };
-    var sql = `SELECT idDH, DATE_FORMAT(donhang.NgayDat, '%d-%m-%Y') as NgayDat, TinhTrang, idKH FROM donhang WHERE ? ORDER BY NgayDat DESC`;
+    var sql = 'SELECT idDH, DATE_FORMAT(donhang.NgayDat, "%d-%m-%Y") as NgayDat, TinhTrang, idKH FROM donhang WHERE ? ORDER BY NgayDat DESC';
     db.query(sql, data, (err, result) => {
         if (err) {
             console.log(err);

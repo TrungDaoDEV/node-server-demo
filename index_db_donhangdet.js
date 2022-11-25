@@ -302,7 +302,8 @@ app.get('/loadmaychay', (req, res) => {
     // var data = {NgayDet: req.headers.ngay};
 
     var sql = 'SELECT *,maydet.Trangthai,maydet.May as May,maydet.TG_OFF as time_off, round(sum(ttmjson.TG_OFF/60),2) as stop, round(sum(ttmjson.TG_ON/60),2) as run '
-        + ' FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay BETWEEN ("2022-11-24 9:00:00") AND (NOW())) '
+        //+ ' FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay BETWEEN ("2022-11-24 9:00:00") AND (NOW())) '
+		+ ' FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay > ("2022-11-24 9:00:00")) '
         + ' GROUP BY maydet.May';
 
     // db.query(sql, data, (err, result) => {

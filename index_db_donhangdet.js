@@ -43,7 +43,7 @@ io.on("connection", function (socket) {
         io.sockets.emit("on-time", data);
     })
     socket.on("TTMD", function (data) {
-        const date = new Date;
+        const date = new Date();
         console.log("May : " + data.M + " SL: " + data.SL + " chay: " + data.TT + " date: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " - " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + " TIME: " + data.SOF);
         socket.broadcast.emit("Server-send-TTM", data);
         if (data.SOF) {
@@ -69,7 +69,7 @@ io.on("connection", function (socket) {
         })
     })
     socket.on("TTM", function (data) {
-        const date = new Date;
+        const date = new Date();
         var timeInMss = date.getTime();
         console.log("May : " + data.may + " SL: " + data.sl + " chay: " + data.chay + " date: " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " - " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + " TM" + timeInMss + " TIME: " + data.may_dung);
         socket.broadcast.emit("Server-send-TTM", data);

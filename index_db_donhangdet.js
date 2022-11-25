@@ -147,6 +147,9 @@ function handleDisconnect() {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
             handleDisconnect();                         // lost due to either server restart, or a
         } else {                                      // connnection idle timeout (the wait_timeout
+        if (err.code === 'App crashed') { // Connection to the MySQL server is usually
+            handleDisconnect();                         // lost due to either server restart, or a
+        } else {                                      // connnection idle timeout (the wait_timeout
             throw err;                                  // server variable configures this)
         }
     });
@@ -299,7 +302,7 @@ app.get('/loadmaychay', (req, res) => {
     // var data = {NgayDet: req.headers.ngay};
 
     var sql = 'SELECT *,maydet.Trangthai,maydet.May as May,maydet.TG_OFF as time_off, round(sum(ttmjson.TG_OFF/60),2) as stop, round(sum(ttmjson.TG_ON/60),2) as run '
-        + ' FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay BETWEEN ("2022-11-14 9:00:00") AND (NOW())) '
+        + ' FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay BETWEEN ("2022-11-24 9:00:00") AND (NOW())) '
         + ' GROUP BY maydet.May';
 
     // db.query(sql, data, (err, result) => {
@@ -308,7 +311,7 @@ app.get('/loadmaychay', (req, res) => {
             console.log(err);
             throw err;
         }
-        console.log("get /datamaychay");
+        console.log("get /loadmaychay");
         res.send(result);//goi kq cho react native
     })
 })

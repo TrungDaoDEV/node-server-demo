@@ -498,7 +498,7 @@ app.post('/deletehh', (req, res) => {
 })
 app.get('/loaddonhang', (req, res) => {
     //var data = { idKH: req.headers.idkh };
-    var sql = `SELECT chitietdonhang.idCTDH,khachhang.idKH,khachhang.TenKH,DATE_FORMAT(donhang.NgayDat, '%d-%m-%Y') as NgayDat,hanghoa.TenHH,`
+    var sql = `SELECT chitietdonhang.idCTDH,khachhang.idKH,khachhang.TenKH,DATE_FORMAT(donhang.NgayDat, '%Y-%m-%d') as NgayDat,hanghoa.TenHH,`
         + ' chitietdonhang.Mau, SUM(chitietdet.SL_Ngay+chitietdet.SL_TC+chitietdet.SL_Dem) as SL_Det,'
         + ' chitietdonhang.SL_Dat,donhang.idDH,hanghoa.idHH,hanghoa.TenHH'
         + ' FROM ((((donhang INNER JOIN khachhang ON (khachhang.idKH=donhang.idKH AND donhang.TinhTrang=0))'

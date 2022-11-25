@@ -300,13 +300,30 @@ app.get('/data', (req, res) => {
 })
 app.get('/loadmaychay', (req, res) => {
     // var data = {NgayDet: req.headers.ngay};
-	const date = new Date;
-    console.log("biến ngày khai báo " + date.toLocaleString());
+	const today = new Date();
+	const yesterday = new Date();
+	var time = "";
+	time = time.concat(today.getHours(),":",today.getMinutes());
+	// trừ 1 ngày
+	yesterday.setDate(today.getDate() - 1);
+	
+	var Ca = returnTime (time);
+	if (Ca == "07:00") {
+		time = "";
+		time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ", Ca,":00");
+	} else if (Ca == "20:00") {
+		time = "";
+		time = time.concat(yesterday.getFullYear(),"-",yesterday.getMonth(),"-",yesterday.getDate()," ", Ca,":00");
+	} else {
+		time = "";
+		time = time.concat(today.getFullYear(),"-",today.getMonth(),"-",today.getDate()," ","07:00:00");
+	}
+	console.log("TIME SQL : " + time);
 
-    var sql = 'SELECT *,maydet.Trangthai,maydet.May as May,maydet.TG_OFF as time_off, round(sum(ttmjson.TG_OFF/60),2) as stop, round(sum(ttmjson.TG_ON/60),2) as run '
+    var sql = `SELECT *,maydet.Trangthai,maydet.May as May,maydet.TG_OFF as time_off, round(sum(ttmjson.TG_OFF/60),2) as stop, round(sum(ttmjson.TG_ON/60),2) as run `
         //+ ' FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay BETWEEN ("2022-11-24 9:00:00") AND (NOW())) '
-		+ ' FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay > "2022-11-24 9:00:00") '
-        + ' GROUP BY maydet.May';
+		+ ` FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay > "${time}") `
+        + ` GROUP BY maydet.May`;
 
     // db.query(sql, data, (err, result) => {
     db.query(sql, (err, result) => {
@@ -755,7 +772,20 @@ app.post('/update', (req, res) => {
         })
     })
 })
-
+function returnTime(str1){
+	var time = [7,16,20,6];
+    var time1 = str1.split(':');
+	
+	console.log 
+	
+	if ((eval(time1[0]) >= eval(time[0])) && (eval(time1[0]) < eval(time[2])))  {
+		return "07:00";
+	} else if ((eval(time1[0]) >= eval(time[2])) || (eval(time1[0]) <= eval(time[0]))) {
+		return "20:00";
+	} else {
+		return 0;
+	}
+}
 // app.listen(3000, ('192.168.1.39'), () => {
 //     console.log("Server đang chạy tại PORT 3000")
 // })

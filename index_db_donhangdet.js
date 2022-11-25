@@ -497,17 +497,17 @@ app.post('/deletehh', (req, res) => {
     })
 })
 app.get('/loaddonhang', (req, res) => {
-    var data = { idKH: req.headers.idkh };
-    var sql = 'SELECT chitietdonhang.idCTDH,khachhang.idKH,khachhang.TenKH,donhang.NgayDat,hanghoa.TenHH,'
+    //var data = { idKH: req.headers.idkh };
+    var sql = `SELECT chitietdonhang.idCTDH,khachhang.idKH,khachhang.TenKH,DATE_FORMAT(donhang.NgayDat, '%d-%m-%Y') as NgayDat,hanghoa.TenHH,`
         + ' chitietdonhang.Mau, SUM(chitietdet.SL_Ngay+chitietdet.SL_TC+chitietdet.SL_Dem) as SL_Det,'
         + ' chitietdonhang.SL_Dat,donhang.idDH,hanghoa.idHH,hanghoa.TenHH'
-        + ' FROM ((((khachhang INNER JOIN donhang ON (khachhang.idKH=donhang.idKH AND donhang.TinhTrang=0))'
+        + ' FROM ((((donhang INNER JOIN khachhang ON (khachhang.idKH=donhang.idKH AND donhang.TinhTrang=0))'
         + ' INNER JOIN hanghoa ON hanghoa.idKH=khachhang.idKH)'
         + ' INNER JOIN chitietdonhang ON (chitietdonhang.idDH=donhang.idDH AND hanghoa.idHH=chitietdonhang.idHH))'
         + ' LEFT JOIN chitietdet ON chitietdet.idCTDH=chitietdonhang.idCTDH)'
         + ' GROUP BY chitietdonhang.idCTDH'
-        + ' ORDER BY donhang.NgayDat, khachhang.TenKH DESC;';
-    db.query(sql, data, (err, result) => {
+        + ' ORDER BY donhang.NgayDat, khachhang.TenKH DESC;'
+    db.query(sql, (err, result) => {
         if (err) {
             console.log(err);
             throw err;

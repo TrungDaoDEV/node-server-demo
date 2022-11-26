@@ -307,7 +307,7 @@ app.get('/loadmaychay', (req, res) => {
 	// trừ 1 ngày
 	yesterday.setDate(today.getDate() - 1);
 	
-	var Ca = returnTime ("6:00");
+	var Ca = returnTime (time);
 	time = "";
 	if (Ca == "07:00") {
 		time = time.concat(today.getFullYear(),"-",today.getMonth()+1,"-",today.getDate()," ", Ca,":00");

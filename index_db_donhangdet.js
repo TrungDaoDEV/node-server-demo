@@ -323,7 +323,8 @@ app.get('/loadmaychay', (req, res) => {
 	console.log("today: " + today);
 	console.log("yesterday: " + yesterday);
 
-    var sql = `SELECT *,maydet.Trangthai,maydet.May as May,maydet.TG_OFF as time_off, round(sum(ttmjson.TG_OFF/60),2) as stop, round(sum(ttmjson.TG_ON/60),2) as run `
+    var sql = `SELECT *,maydet.Trangthai,maydet.May as May,maydet.TG_OFF as time_off, round(sum(ttmjson.TG_OFF/60),2) as stop,`
+		+ ` round(sum(ttmjson.TG_ON/60),2) as run, sum(ttmjson.SL) as TSL `
         //+ ' FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay BETWEEN ("2022-11-24 9:00:00") AND (NOW())) '
 		+ ` FROM maydet LEFT JOIN ttmjson ON maydet.May=ttmjson.May and (ttmjson.Ngay > "${time}") `
         + ` GROUP BY maydet.May`;

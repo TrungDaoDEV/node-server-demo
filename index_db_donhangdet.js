@@ -127,10 +127,10 @@ var db;
 function handleDisconnect() {
     db = mysql.createConnection({
         host: 'us-cdbr-east-06.cleardb.net',
-        user: 'b1a67cdd6b2463',
-        password: '2ff783a8',
+        user: 'b87feaf6bc86ec',
+        password: '3623dace',
         // port: 8080,
-        database: 'heroku_567fe36f1fa15f6',
+        database: 'heroku_a342647ec0ec5bf',
     }); // Recreate the connection, since
     // the old one cannot be reused.
 

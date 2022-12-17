@@ -195,7 +195,7 @@ app.get('/loadloi', (req, res) => {
             console.log(err);
             throw err;
         }
-        console.log("get    /laod loi");
+        console.log(" tai sao lai khong upload len dc server");
         res.send(result);//goi kq cho react native
     })
 })

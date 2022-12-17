@@ -188,6 +188,17 @@ app.get('/datamaydung', (req, res) => {
         res.send(result);//goi kq cho react native
     })
 })
+app.get('/loadloi', (req, res) => {
+    var sql = 'SELECT * FROM `maydet` WHERE Trangthai LIKE 0';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        console.log("get    /laodloi ========");
+        res.send(result);//goi kq cho react native
+    })
+})
 app.get('/loadsanluong', (req, res) => {
     // var data = {NgayDet: req.headers.ngay};
     var sql = 'SELECT maydet.idMD, maydet.May, maydet.ChayVo, hanghoa.TenHH,chitietdonhang.idCTDH, '

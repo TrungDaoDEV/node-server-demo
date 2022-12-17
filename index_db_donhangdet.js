@@ -188,6 +188,26 @@ app.get('/datamaydung', (req, res) => {
         res.send(result);//goi kq cho react native
     })
 })
+app.get('/loadvochay', (req, res) => {
+	var test = '2022-11-23';
+    var sql = 'SELECT 	hanghoa.TenHH, sum(chitietdet.SL_Ngay) as TongNgay, sum(chitietdet.SL_TC) as TongTC, '
+        + 'sum(chitietdet.SL_Dem) as TongDem, sum(chitietdet.SL_Ngay+chitietdet.SL_TC+chitietdet.SL_Dem) as Total '
+        + 'FROM (hanghoa INNER JOIN chitietdonhang ON hanghoa.idHH=chitietdonhang.idHH) '
+//        + `INNER JOIN chitietdet ON (chitietdonhang.idCTDH=chitietdet.idCTDH AND (NgayDet > ${req.headers.tungay})) `
+        + `INNER JOIN chitietdet ON (chitietdonhang.idCTDH=chitietdet.idCTDH AND (NgayDet > ${test})) `
+        + 'GROUP BY hanghoa.TenHH '
+        + 'ORDER BY hanghoa.TenHH';
+
+    // db.query(sql, data, (err, result) => {
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        console.log("get /load vo chay");
+        res.send(result);//goi kq cho react native
+    })
+})
 app.get('/loadsanluong', (req, res) => {
     // var data = {NgayDet: req.headers.ngay};
     var sql = 'SELECT maydet.idMD, maydet.May, maydet.ChayVo, hanghoa.TenHH,chitietdonhang.idCTDH, '

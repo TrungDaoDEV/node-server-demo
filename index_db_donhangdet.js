@@ -190,14 +190,6 @@ app.get('/datamaydung', (req, res) => {
 })
 app.get('/loadvochay', (req, res) => {
     var sql = 'SELECT * FROM `maydet` WHERE Trangthai LIKE 0';
-    db.query(sql, (err, result) => {
-        if (err) {
-            console.log(err);
-            throw err;
-        }
-        console.log("get    /datamaydung");
-        res.send(result);//goi kq cho react native
-    })
 	// var test = '2022-11-23';
     // var sql = 'SELECT hanghoa.TenHH, sum(chitietdet.SL_Ngay) as TongNgay, sum(chitietdet.SL_TC) as TongTC, '
         // + 'sum(chitietdet.SL_Dem) as TongDem, sum(chitietdet.SL_Ngay+chitietdet.SL_TC+chitietdet.SL_Dem) as Total '

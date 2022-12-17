@@ -194,7 +194,7 @@ app.get('/loadvochay', (req, res) => {
         + 'sum(chitietdet.SL_Dem) as TongDem, sum(chitietdet.SL_Ngay+chitietdet.SL_TC+chitietdet.SL_Dem) as Total '
         + 'FROM (hanghoa INNER JOIN chitietdonhang ON hanghoa.idHH=chitietdonhang.idHH) '
 //        + `INNER JOIN chitietdet ON (chitietdonhang.idCTDH=chitietdet.idCTDH AND (NgayDet > ${req.headers.tungay})) `
-        + `INNER JOIN chitietdet ON (chitietdonhang.idCTDH=chitietdet.idCTDH AND (NgayDet > ${test})) `
+        + `INNER JOIN chitietdet ON (chitietdonhang.idCTDH=chitietdet.idCTDH AND (NgayDet > ${test})) ` + "' "
         + 'GROUP BY hanghoa.TenHH '
         + 'ORDER BY hanghoa.TenHH';
 
